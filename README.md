@@ -1,24 +1,24 @@
-#include<iostream>  
-using namespace std;   
-const int maxsize=1000;   
+#include <iostream>   
+using namespace std;  
+const int maxsize=1000;  
 template <class T>   
-class Seqlist{   
-public:   
-      Seqlist():length(0)    
-      {}   
-      seqlist(const T a[],int n);   
-      int Getlength(){   
-          return length;   
-      }   
-      void Printlist();   
-      void Insert(int i,T x);   
-      
-      
+class Seqlist{  
+public:  
+      Seqlist():length(0)   
+      {}  
+      seqlist(const T a[],int n);  
+      int Getlength(){  
+          return length;  
+      }  
+      void Printlist();  
+      void Insert(int i,T x);     
+      T Date(int i);    
+      T Get(int i);  
+      int Locate(T x);  
+private:
+      T date[maxsize];
+      int length;
 
-private:   
-      T date[maxsize];   
-      int length;   
-
-};   
-int main(){   
-}   
+};  
+int main(){  
+}  
