@@ -1,0 +1,632 @@
+#include<iostream>
+#include<algorithm>
+#include<string>
+#include<cstdlib>
+#include<cstdio>
+#include<cmath>
+using namespace std;
+class student {
+public:
+	void begin();                 //开始界面
+	void end();                   //结束界面
+	void input_information();     //输入信息
+	void view_information();      //查看信息
+	void change_information();    //修改信息
+	void clear_information();     //清除信息
+	void search_result();         //查找成绩
+	void range_query();           //区间查询
+	void statistical_result();    //统计成绩
+	void result_sorting();        //成绩排序
+	void search_stuID();          //查找学号
+	void stuID_sorting();         //学号排序
+	void search_house();          //查找户籍
+	void house_classification();  //户籍分类
+
+private:
+	string name[1000];            //学生姓名
+	string xuehao[1000];          //学生学号
+	double score[1000];           //学生分数
+	string sf[1000];          //学生所在省份
+	string cs[1000];          //学生所在城市
+	static int no;            //当前学生人数
+};
+int student::no = 0;        //初始化静态变量
+void student::begin()
+{
+	char s = '1';
+	do
+	{
+		system("cls");
+		system("color B");
+		cout << "\t\t\t【欢迎使用学生管理系统】\n\n";
+                cout << "\t\t\t     author:刘成健         \n";  
+		cout << "\t\t\t  ◆◇◆◇◆◇◆◇◆◇\n";
+		cout << "〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n\n";
+		cout << "‖   ★学生信息管理系统\t     ★学生成绩管理系统\t    ★学生学籍管理系统 ‖\n\n";
+		cout << "‖   Ⅰ.输入信息       \t     Ⅰ.查找成绩     \t     Ⅰ.查找学号       ‖\n\n";
+		cout << "‖   Ⅱ.查看信息       \t     Ⅱ.区间查询     \t     Ⅱ.学号排序       ‖\n\n";
+		cout << "‖   Ⅲ.修改信息       \t     Ⅲ.统计成绩     \t     Ⅲ.查找户籍       ‖\n\n";
+		cout << "‖   Ⅳ.清除信息       \t     Ⅳ.成绩排序     \t     Ⅳ.户籍分类       ‖\n\n";
+		cout << "‖   Ⅴ.退出系统       \t     Ⅴ.退出系统     \t     Ⅴ.退出系统       ‖\n\n";
+		cout << "〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n\n";
+		char n;
+		do {
+			cout << "请选择系统1-3(按#号键退出)" << endl;
+			cin >> s;
+			if (s == '#')
+				end();
+			cout << "请选择功能序号1-5(按#号键退出,按*号键返回上一级)" << endl;
+			cin >> n;
+		} while (n == '*');
+		if (n == '#' || n == '5')
+			break;
+		else if (s == '1'&&n == '1')
+			input_information();
+		else if (s == '1'&&n == '2')
+			view_information();
+		else if (s == '1'&&n == '3')
+			change_information();
+		else if (s == '1'&&n == '4')
+			clear_information();
+		else if (s == '2'&&n == '1')
+			search_result();
+		else if (s == '2'&&n == '2')
+			range_query();
+		else if (s == '2'&&n == '3')
+			statistical_result();
+		else if (s == '2'&&n == '4')
+			result_sorting();
+		else if (s == '3'&&n == '1')
+			search_stuID();
+		else if (s == '3'&&n == '2')
+			stuID_sorting();
+		else if (s == '3'&&n == '3')
+			search_house();
+		else if (s == '3'&&n == '4')
+			house_classification();
+
+	} while (s != '#');
+}
+void student::end()
+{
+	system("cls");
+	int t = 66;
+	cout << "\t\t\t◆◇◆◇◆◇◆◇◆◇\n" << endl;
+	cout << "〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n\n";
+	cout << "                             感谢使用\n";
+	cout << "                           Thanks to use\n";
+	cout << "                      ご使用ありがとうございます\n";
+	cout << "              Спасибо за использование\n\n";
+	cout << "〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓\n\n";
+	cout << "\t\t\t◆◇◆◇◆◇◆◇◆◇" << endl;
+	while (t--)
+	{
+		system("color A");
+		system("color B");
+		system("color C");
+		system("color D");
+		system("color E");
+		system("color F");
+		system("color B");
+	}
+	exit(0);
+}
+void student::input_information()
+{
+	system("cls");
+	system("color A");
+	cout << "请选择你要输入学生信息的个数\n";
+	int n;
+	cin >> n;
+	cout << endl;
+	if (n == 0)
+		cout << "未输入学生个数，录入失败\n\n";
+	else
+	{
+		for (int i = no, k = 1; i < n + no; i++, k++)
+		{
+			cout << "请输入第" << k << "个学生的信息" << endl;
+			cout << "姓名" << endl;;
+			cin >> name[i];
+			cout << "学号" << endl;;
+			cin >> xuehao[i];
+			cout << "总分" << endl;;
+			cin >> score[i];
+			cout << "学生户籍所在省份" << endl;;
+			cin >> sf[i];
+			cout << "学生户籍所在城市" << endl;;
+			cin >> cs[i];
+			cout << endl;
+		}
+		no += n;
+		cout << "录入成功！\n\n";
+	}
+	system("pause");
+}
+void student::view_information()
+{
+	system("cls");
+	system("color C");
+	cout << "当前共有" << no << "个学生的信息\n" << endl;
+	for (int i = 0; i < no; i++)
+	{
+		cout << "第" << i + 1 << "个学生的信息如下" << endl;
+		cout << "姓名:" << name[i] << endl;
+		cout << "学号:" << xuehao[i] << endl;
+		cout << "总分:" << score[i] << endl;
+		cout << "户籍所在省份:" << sf[i] << endl;
+		cout << "户籍所在城市:" << cs[i] << endl << endl;
+	}
+	cout << endl;
+	system("pause");
+}
+void student::change_information()
+{
+	system("cls");
+	system("color D");
+	cout << "请选择修改查找方式：" << endl;
+	cout << "1.按姓名查找    2.按学号查找\n";
+	int a;
+	cin >> a;
+	if (a == 1)
+		cout << "请输入姓名：" << endl;
+	else
+		cout << "请输入学号：" << endl;
+	string k;
+	cin >> k;
+	int i;
+	for (i = 0; i < no; i++)
+	{
+		if (name[i] == k || xuehao[i] == k)
+		{
+			cout << "该学生的信息为：" << endl;
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+			cout << "请选择修改该学生的信息" << endl;
+			cout << "1.姓名  2.学号  3.总分  4.省份  5.城市  6.全部" << endl;
+			int n;
+			cin >> n;
+			if (n == 1 || n == 6)
+			{
+				cout << "请输入新姓名" << endl;;
+				cin >> name[i];
+			}
+			if (n == 2 || n == 6)
+			{
+				cout << "请输入新学号" << endl;;
+				cin >> xuehao[i];
+			}
+			if (n == 3 || n == 6)
+			{
+				cout << "请输入新总分" << endl;;
+				cin >> score[i];
+			}
+			if (n == 4 || n == 6)
+			{
+				cout << "请输入学生户籍所在新省份" << endl;;
+				cin >> sf[i];
+			}
+			if (n == 5 || n == 6)
+			{
+				cout << "请输入学生户籍所在新城市" << endl;;
+				cin >> cs[i];
+			}
+			break;
+		}
+	}
+	if (i == no)
+		cout << "\n修改失败，未找到该学生\n" << endl;
+	else
+		cout << "\n修改成功！\n\n";
+	system("pause");
+}
+void student::clear_information()
+{
+	system("cls");
+	system("color E");
+	cout << "请选择删除查找方式：" << endl;
+	cout << "1.按姓名查找    2.按学号查找    3.删除全部信息\n";
+	int i, a;
+	cin >> a;
+	if (a != 3)
+	{
+		string k;
+		if (a == 1)
+			cout << "请输入姓名：" << endl;
+		else
+			cout << "请输入学号：" << endl;
+		cin >> k;
+		cout << endl;
+		for (i = 0; i < no; i++)
+		{
+			if (name[i] == k || xuehao[i] == k)
+			{
+				cout << "该学生的信息为：" << endl;
+				cout << "姓名:" << name[i] << endl;
+				cout << "学号:" << xuehao[i] << endl;
+				cout << "总分:" << score[i] << endl;
+				cout << "户籍所在省份:" << sf[i] << endl;
+				cout << "户籍所在城市:" << cs[i] << endl << endl;
+				cout << "确认删除吗？" << endl;
+				cout << "1.是  2.否" << endl;
+				int n;
+				cin >> n;
+				if (n == 1)
+				{
+					for (int j = i; j < no; j++)
+					{
+						name[j] = name[j + 1];
+						xuehao[j] = xuehao[j + 1];
+						score[j] = score[j + 1];
+						sf[j] = sf[j + 1];
+						cs[j] = cs[j + 1];
+					}
+				}
+				else
+					i = no;
+				break;
+			}
+		}
+		if (i == no)
+			cout << "\n清除失败！\n\n" << endl;
+		else
+		{
+			cout << "\n清除成功！\n\n";
+			no--;
+		}
+	}
+	else
+	{
+		cout << "确认删除吗？" << endl;
+		cout << "1.是  2.否" << endl;
+		int n;
+		cin >> n;
+		if (n == 1)
+		{
+			no = 0;
+			cout << "\n清除成功！\n\n";
+		}
+		else
+		{
+			cout << "\n清除失败！\n\n";
+		}
+	}
+
+	system("pause");
+}
+void student::search_result()
+{
+	system("cls");
+	system("color F");
+	cout << "请输入要查询的成绩" << endl;
+	double cx;
+	cin >> cx;
+	cout << endl;
+	int i, k = 1, flag = 1;
+	for (i = 0; i < no; i++)
+	{
+		if (score[i] == cx)
+		{
+			cout << "成绩为" << cx << "的第" << k++ << "个学生的信息为：" << endl;
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+			flag = 0;
+		}
+	}
+	if (flag)
+		cout << "暂无信息" << endl << endl;
+	else
+		cout << "查询完毕" << endl << endl;
+	system("pause");
+}
+void student::range_query()
+{
+	system("cls");
+	system("color A");
+	cout << "请输入要查询成绩的区间(格式a-b)" << endl;
+	double a, b;
+	char f;
+	cin >> a >> f >> b;
+	cout << endl;
+	int i, k = 1, flag = 1;
+	for (i = 0; i < no; i++)
+	{
+		if (score[i] >= a&&score[i] <= b)
+		{
+			cout << "成绩在此区间的第" << k++ << "个学生的信息为：" << endl;
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+			flag = 0;
+		}
+	}
+	if (flag)
+		cout << "暂无信息" << endl << endl;
+	else
+		cout << "查询完毕" << endl << endl;
+	system("pause");
+}
+void student::statistical_result()
+{
+	system("cls");
+	system("color C");
+	double max = -1, min = 9999999999, sum = 0;
+	int m1 = 0, n1 = 0;
+	if (no == 0)
+		cout << "无学生信息" << endl << endl;
+	else
+	{
+		for (int i = 0; i < no; i++)
+		{
+			if (score[i] > max)
+			{
+				max = score[i];
+				m1 = i;
+			}
+			if (score[i] < min)
+			{
+				min = score[i];
+				n1 = i;
+			}
+			sum += score[i];
+		}
+		cout << "所有学生平均成绩为：" << sum / no << endl;
+		cout << "学生成绩最高分为：" << score[m1] << endl;
+		cout << "学生成绩最低分为：" << score[n1] << endl << endl;
+		cout << "所有成绩中，最高分学生的信息为：" << endl;
+		cout << "姓名:" << name[m1] << endl;
+		cout << "学号:" << xuehao[m1] << endl;
+		cout << "总分:" << score[m1] << endl;
+		cout << "户籍所在省份:" << sf[m1] << endl;
+		cout << "户籍所在城市:" << cs[m1] << endl << endl;
+		cout << "所有成绩中，最低分学生的信息为：" << endl;
+		cout << "姓名:" << name[n1] << endl;
+		cout << "学号:" << xuehao[n1] << endl;
+		cout << "总分:" << score[n1] << endl;
+		cout << "户籍所在省份:" << sf[n1] << endl;
+		cout << "户籍所在城市:" << cs[n1] << endl << endl;
+	}
+	system("pause");
+}
+void student::result_sorting()
+{
+	system("cls");
+	system("color D");
+	string t[4];
+	double l;
+	for (int i = 0; i < no - 1; i++)
+	{
+		for (int j = 0; j < no - 1 - i; j++)
+		{
+			if (score[j] < score[j + 1])
+			{
+				l = score[j]; score[j] = score[j + 1]; score[j + 1] = l;
+				t[0] = name[j]; name[j] = name[j + 1]; name[j + 1] = t[0];
+				t[1] = xuehao[j]; xuehao[j] = xuehao[j + 1]; xuehao[j + 1] = t[1];
+				t[2] = sf[j]; sf[j] = sf[j + 1]; sf[j + 1] = t[2];
+				t[3] = cs[j]; cs[j] = cs[j + 1]; cs[j + 1] = t[3];
+			}
+		}
+	}
+	cout << "请选择成绩排序方法:\n1.升序  2.降序" << endl;
+	int n;
+	cin >> n;
+	cout << endl;
+	if (n == 1)
+	{
+		cout << "将成绩升序排序后学生信息为：" << endl;
+		for (int i = no - 1; i >= 0; i--)
+		{
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+		}
+	}
+	else
+	{
+		cout << "将成绩降序排序后学生信息为：" << endl;
+		for (int i = 0; i < no; i++)
+		{
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+		}
+	}
+	cout << endl;
+	system("pause");
+}
+void student::search_stuID()
+{
+	system("cls");
+	system("color F");
+	cout << "请选择要查询的学号\n";
+	string n;
+	cin >> n;
+	cout << endl;
+	int i, flag = 1;
+	for (i = 0; i < no; i++)
+	{
+		if (xuehao[i] == n)
+		{
+			cout << "学号为" << n << "的学生的信息为：\n";
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+			flag = 0;
+		}
+	}
+	if (flag)
+		cout << "暂无信息" << endl << endl;
+	else
+		cout << "查询完毕" << endl << endl;
+	cout << endl;
+	system("pause");
+}
+void student::stuID_sorting()
+{
+	system("cls");
+	system("color A");
+	string t[4];
+	double l;
+	for (int i = 0; i < no - 1; i++)
+	{
+		for (int j = 0; j < no - 1 - i; j++)
+		{
+			if (xuehao[j] < xuehao[j + 1])
+			{
+				l = score[j]; score[j] = score[j + 1]; score[j + 1] = l;
+				t[0] = name[j]; name[j] = name[j + 1]; name[j + 1] = t[0];
+				t[1] = xuehao[j]; xuehao[j] = xuehao[j + 1]; xuehao[j + 1] = t[1];
+				t[2] = sf[j]; sf[j] = sf[j + 1]; sf[j + 1] = t[2];
+				t[3] = cs[j]; cs[j] = cs[j + 1]; cs[j + 1] = t[3];
+			}
+		}
+	}
+	cout << "请选择学号排序方法:\n1.升序  2.降序" << endl;
+	int n;
+	cin >> n;
+	cout << endl;
+	if (n == 1)
+	{
+		cout << "将学号升序排序后学生信息为：" << endl;
+		for (int i = no - 1; i >= 0; i--)
+		{
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+		}
+	}
+	else
+	{
+		cout << "将学号降序排序后学生信息为：" << endl;
+		for (int i = 0; i < no; i++)
+		{
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+		}
+	}
+	cout << endl;
+	system("pause");
+}
+void student::search_house()
+{
+	system("cls");
+	system("color D");
+	cout << "请选择要查找户籍所在地的方式:\n";
+	cout << "1.按省份查找      2.按城市查找\n";
+	string k;
+	cin >> k;
+	if (k == "1")
+		cout << "请输入省份名" << endl;
+	else
+		cout << "请输入城市名" << endl;
+	string n;
+	int i, flag = 1, p = 1;
+	cin >> n;
+	cout << endl;
+	for (i = 0; i < no; i++)
+	{
+		if (sf[i] == n || cs[i] == n)
+		{
+			cout << "户籍在" << n << "的第" << p++ << "个学生的信息为" << endl;
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+			flag = 0;
+		}
+	}
+	if (flag)
+		cout << "暂无信息" << endl << endl;
+	else
+		cout << "查询完毕" << endl << endl;
+	system("pause");
+}
+void student::house_classification()
+{
+	system("cls");
+	system("color E");
+	string t[4];
+	double l;
+	for (int i = 0; i < no - 1; i++)
+	{
+		for (int j = 0; j < no - 1 - i; j++)
+		{
+			if (sf[j] < sf[j + 1])
+			{
+				l = score[j]; score[j] = score[j + 1]; score[j + 1] = l;
+				t[0] = name[j]; name[j] = name[j + 1]; name[j + 1] = t[0];
+				t[1] = xuehao[j]; xuehao[j] = xuehao[j + 1]; xuehao[j + 1] = t[1];
+				t[2] = sf[j]; sf[j] = sf[j + 1]; sf[j + 1] = t[2];
+				t[3] = cs[j]; cs[j] = cs[j + 1]; cs[j + 1] = t[3];
+			}
+			else if (sf[j] == sf[j + 1])
+			{
+				if (cs[j] < cs[j + 1])
+				{
+					l = score[j]; score[j] = score[j + 1]; score[j + 1] = l;
+					t[0] = name[j]; name[j] = name[j + 1]; name[j + 1] = t[0];
+					t[1] = xuehao[j]; xuehao[j] = xuehao[j + 1]; xuehao[j + 1] = t[1];
+					t[2] = sf[j]; sf[j] = sf[j + 1]; sf[j + 1] = t[2];
+					t[3] = cs[j]; cs[j] = cs[j + 1]; cs[j + 1] = t[3];
+				}
+			}
+		}
+	}
+	cout << "请选择户籍名排序方法（省份字母相同，则按城市开头字母排序）:\n1.升序  2.降序" << endl;
+	int n;
+	cin >> n;
+	cout << endl;
+	if (n == 1)
+	{
+		cout << "将户籍名升序排序后学生信息为：" << endl;
+		for (int i = no - 1; i >= 0; i--)
+		{
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+		}
+	}
+	else
+	{
+		cout << "将户籍降序排序后学生信息为：" << endl;
+		for (int i = 0; i < no; i++)
+		{
+			cout << "姓名:" << name[i] << endl;
+			cout << "学号:" << xuehao[i] << endl;
+			cout << "总分:" << score[i] << endl;
+			cout << "户籍所在省份:" << sf[i] << endl;
+			cout << "户籍所在城市:" << cs[i] << endl << endl;
+		}
+	}
+	cout << endl;
+	system("pause");
+}
+int main()
+{
+	student n;
+	n.begin();
+	n.end();
+}
