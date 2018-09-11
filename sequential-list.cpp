@@ -32,7 +32,7 @@ int Seqlist< T >::Getlength(){
 }
 template < class T >
 void Seqlist< T >::Printlist(){
-      cout<<"±éÀúÏßĞÔ±íµÄ¸÷¸öÊı¾İÔªËØ"<<endl;
+      cout<<"éå†çº¿æ€§è¡¨çš„å„ä¸ªæ•°æ®å…ƒç´ "<<endl;
       for(int i=0;i<length;i++){
           cout<<date[i]<<' ';
       }
@@ -75,19 +75,19 @@ int Seqlist< T >::Locate(T x){
 }
 int main(){
       int a[1000],n;
-      cout<<"ÊäÈëÔªËØ¸öÊı(<1000)"<<endl;
+      cout<<"è¾“å…¥å…ƒç´ ä¸ªæ•°(<1000)"<<endl;
       cin>>n;
-      cout<<"ÊäÈëÔªËØ"<<endl;
+      cout<<"è¾“å…¥å…ƒç´ "<<endl;
       for(int i=0;i<n;i++)
           cin>>a[i];
       Seqlist < int > list1(a,n);
       list1.Printlist();
-      cout<<"ÏòÎ»ÖÃ2²åÈëÔªËØ0ºó";
+      cout<<"å‘ä½ç½®2æ’å…¥å…ƒç´ 0å";
       list1.Insert(2,0);
       list1.Printlist();
       int x=list1.Delete(4);
-      cout<<"É¾³ıÔªËØ£º"<<x<<endl;
+      cout<<"åˆ é™¤å…ƒç´ ï¼š"<<x<<endl;
       list1.Printlist();
       int p=list1.Locate(4);
-      cout<<"ÔªËØ4µÄÎ»ÖÃ£º"<<p<<endl;
+      cout<<"å…ƒç´ 4çš„ä½ç½®ï¼š"<<p<<endl;
 }
