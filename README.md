@@ -1,4 +1,4 @@
-#include <iostream>   
+#include < iostream >   
 using namespace std;  
 const int maxsize=1000;  
 template <class T>   
