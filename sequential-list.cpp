@@ -2,7 +2,7 @@
 using namespace std;
 const int maxsize=1000;
 template < class T >
-class Seqlist{
+class Seqlist{ 
 public:
       Seqlist():length(0) {}
       Seqlist(const T a[],int n);
