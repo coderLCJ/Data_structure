@@ -33,7 +33,7 @@ void queen(int step)
     }
 }
 int main()
-{
+{ 
     queen(0);
     for(int i=0;i<k;i++)
       cout<<jie[i]<<endl;
