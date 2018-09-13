@@ -1,0 +1,25 @@
+Linklist< T >::Linklist(T a[],int n){        //头插法建立单链表
+      front =new Node<T>;                     
+      front->next=NULL;                      //构造空单链表
+      for(int i=n-1;i>=0;i--){
+          Node<T> *s=new Node<T>;            //（1）建立新结点          
+          s->date=a[i];                      //（2）将a[i]写入新结点的数据域
+          s->next=front->next;               //（3）修改新结点的指针域
+          front->next=s;                     //（4）修改头结点的指针域，将新结点加入到链表
+      }
+      length=n;
+}
+
+*************************************************************************************************
+Linklist< T >::Linklist(T a[],int n){        //尾插法建立单链表
+      front =new Node<T>;                     
+      Node<T> *r=front;                      //建立尾指针
+      for(int i=n-1;i>=0;i--){
+          Node<T> *s=new Node<T>;            //（1）建立新结点          
+          s->date=a[i];                      //（2）将a[i]写入新结点的数据域
+          r->next=s;                         //（3）将新结点加入到链表
+          r=s;                               //（4）修改尾指针
+      }
+      r->next=NULL;                          //将终端结点的指针域设为空
+      length=n;
+}
