@@ -1,1 +1,1 @@
-This repositories contains some basic operations of data structure.
+This repertory contains some basic operations of data structure.
