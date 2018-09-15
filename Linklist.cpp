@@ -25,7 +25,7 @@ private:
       int length=0;
 };
 template < class T >
-Linklist< T >::Linklist(T a[],int n){    //Í·²å·¨
+Linklist< T >::Linklist(T a[],int n){    //å¤´æ’æ³•
       front =new Node<T>;
       front->next=NULL;
       for(int i=n-1;i>=0;i--){
@@ -44,7 +44,7 @@ Linklist<T>::~Linklist(){
         p=p->next;
         delete front;
       }
-      cout<<"Îö¹¹º¯ÊıÔËĞĞÍê³É"<<endl;
+      cout<<"ææ„å‡½æ•°è¿è¡Œå®Œæˆ"<<endl;
 }
 template < class T >
 int Linklist< T >::Getlength(){
@@ -52,7 +52,7 @@ int Linklist< T >::Getlength(){
 }
 template < class T >
 void Linklist< T >::Printlist(){
-    cout<<"±éÀúÁ´±íÖĞµÄËùÓĞÔªËØ:"<<endl;
+    cout<<"éå†é“¾è¡¨ä¸­çš„æ‰€æœ‰å…ƒç´ :"<<endl;
      Node<T> *p=front->next;
      while(p){
         cout<<p->date<<' ';
@@ -115,16 +115,16 @@ int main(){
       int a[]={1,2,3,4,5,6,7,8,9,10};
       Linklist<int> list(a,10);
       list.Printlist();
-      cout<<"Á´±í³¤¶È"<<endl;
+      cout<<"é“¾è¡¨é•¿åº¦"<<endl;
       cout<<list.Getlength()<<endl;
-      cout<<"ÔªËØ2µÄµØÖ·"<<endl;
+      cout<<"å…ƒç´ 2çš„åœ°å€"<<endl;
       cout<<list.Get(2)<<endl;
-      cout<<"ÔªËØ6µÄÎ»ÖÃ"<<endl;
+      cout<<"å…ƒç´ 6çš„ä½ç½®"<<endl;
       cout<<list.Locate(6)<<endl;
-      cout<<"Î»ÖÃ5²åÈëÔªËØ-1"<<endl;
+      cout<<"ä½ç½®5æ’å…¥å…ƒç´ -1"<<endl;
       list.Insert(5,-1);
       list.Printlist();
-      cout<<"É¾³ıÎ»ÖÃ10µÄÔªËØ"<<endl;
+      cout<<"åˆ é™¤ä½ç½®10çš„å…ƒç´ "<<endl;
       list.Delete(10);
       list.Printlist();
 }
