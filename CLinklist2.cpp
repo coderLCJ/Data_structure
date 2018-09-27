@@ -16,16 +16,16 @@ private:
       Node *rear;
       int length=0;
 };
-CLinklist::CLinklist(int a[],int n){        //Î²²å·¨½¨Á¢µ¥Á´±í
+CLinklist::CLinklist(int a[],int n){        //å°¾æ’æ³•å»ºç«‹å¾ªç¯é“¾è¡¨
       rear =new Node;
-      Node *r=rear;                         //½¨Á¢Î²Ö¸Õë
+      Node *r=rear;                         //å»ºç«‹å°¾æŒ‡é’ˆ
       for(int i=0;i<n;i++){
-          Node *s=new Node;                 //£¨1£©½¨Á¢ĞÂ½áµã
-          s->date=a[i];                     //£¨2£©½«a[i]Ğ´ÈëĞÂ½áµãµÄÊı¾İÓò
-          r->next=s;                        //£¨3£©½«ĞÂ½áµã¼ÓÈëµ½Á´±í
-          r=s;                              //£¨4£©ĞŞ¸ÄÎ²Ö¸Õë
+          Node *s=new Node;                 //ï¼ˆ1ï¼‰å»ºç«‹æ–°ç»“ç‚¹
+          s->date=a[i];                     //ï¼ˆ2ï¼‰å°†a[i]å†™å…¥æ–°ç»“ç‚¹çš„æ•°æ®åŸŸ
+          r->next=s;                        //ï¼ˆ3ï¼‰å°†æ–°ç»“ç‚¹åŠ å…¥åˆ°é“¾è¡¨
+          r=s;                              //ï¼ˆ4ï¼‰ä¿®æ”¹å°¾æŒ‡é’ˆ
       }
-      r->next=rear;                         //½«ÖÕ¶Ë½áµãµÄÖ¸ÕëÓòÖ¸ÏòÍ·½áµã
+      r->next=rear;                         //å°†ç»ˆç«¯ç»“ç‚¹çš„æŒ‡é’ˆåŸŸæŒ‡å‘å¤´ç»“ç‚¹
       length=n;
 }
 void CLinklist::insert(int i,int e){
@@ -65,7 +65,7 @@ CLinklist::~CLinklist(){
             p=p->next;
             delete k;
       }
-      delete p;                                 //´ËÊ±Ö¸ÕëÖ¸ÏòÎ²½áµã£¬ÊÍ·Å×îºóÒ»¸ö½áµã
+      delete p;                                 //æ­¤æ—¶æŒ‡é’ˆæŒ‡å‘å°¾ç»“ç‚¹ï¼Œé‡Šæ”¾æœ€åä¸€ä¸ªç»“ç‚¹
 }
 void CLinklist::Printlist(){
      int j=0;
