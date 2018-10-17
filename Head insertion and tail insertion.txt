@@ -23,3 +23,4 @@ Linklist< T >::Linklist(T a[],int n){        //尾插法建立单链表
       r->next=NULL;                          //将终端结点的指针域设为空
       length=n;
 }
+ 
