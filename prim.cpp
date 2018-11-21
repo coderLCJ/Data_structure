@@ -15,7 +15,7 @@ void prim(){
         int k=mininum();
         //cout<<"V"<<adjvex[k]+1<<"->V"<<k+1<<endl;
         lowcost[k]=0;
-        for(int j=0;j<vnum;j++){        //¸üÐÂ¸¨ÖúÊý×é
+        for(int j=0;j<vnum;j++){        //Â¸Ã¼ÃÃ‚Â¸Â¨Ã–ÃºÃŠÃ½Ã—Ã©
             if(lowcost[j]!=0&&arcs[k][j]<lowcost[j]){
                 lowcost[j]=arcs[k][j];
                 adjvex[j]=k;
