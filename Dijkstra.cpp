@@ -35,7 +35,7 @@ void print(int d[],int p[],int n)
     }
     cout<<endl;
 }
-void Dijkstra(int v,int n)     //v为出发点
+void Dijkstra(int v,int n)     //v脦陋鲁枚路垄碌茫
 {
     bool S[MAXSIZE]= {false};
     int disk[n],path[n];
@@ -45,7 +45,7 @@ void Dijkstra(int v,int n)     //v为出发点
         if(disk[i]!=MAX)
             path[i]=v;
         else
-            path[i]=-1;  //无前驱
+            path[i]=-1;  //脦脼脟掳脟媒
     }
     // for(int i=0;i<n;i++) cout<<path[i]<<' ';cout<<endl;
     S[v]=true;
