@@ -20,13 +20,13 @@ void floyd(int n){
             for(int j=0;j<n;j++){
                 if(dist[i][k]+dist[k][j]<dist[i][j]){
                     dist[i][j]=dist[i][k]+dist[k][j];
-                    path[i][j]=k;    //¹ýkµ½j
+                    path[i][j]=k;    //è¿‡kåˆ°j
                 }
 
             }
         }
     }
-    cout<<dist[0][n-1]<<endl;   //0µ½×îºóÒ»¸ö¶¥µãµÄ×î¶ÌÂ·¾¶³¤¶È
+    cout<<dist[0][n-1]<<endl;   //0åˆ°æœ€åŽä¸€ä¸ªé¡¶ç‚¹çš„æœ€çŸ­è·¯å¾„é•¿åº¦
 }
 int main()
 {
