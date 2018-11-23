@@ -4,8 +4,7 @@
 using namespace std;
 int arcs[MAXSIZE][MAXSIZE],path[MAXSIZE][MAXSIZE];
 void output(int i,int j){
-    //if(i==j) return;
-     if(path[i][j]==0) cout<<"->"<<j+1;
+     if(path[i][j]==0) cout<<"->"<<j+1;  //从第二个开始
      else{
          output(i,path[i][j]);
          output(path[i][j],j);
