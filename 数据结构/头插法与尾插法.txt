@@ -1,0 +1,93 @@
+#include<iostream>
+#include<bits/stdtr1c++.h>
+using namespace std;
+template < class T >
+struct Node{
+      T date;
+      struct Node *next;
+};
+template < class T >
+class Linklist{
+public:
+      Linklist(){
+        front=new Node<T>;
+        front->next=NULL;
+      }
+      Linklist(T a[],int n);
+      ~Linklist();
+      void Printlist();
+      int Getlength();
+      Node<T> *Get(int i);
+      int Locate(T x);
+      void Insert(int i,T x);
+      T Delete(int i);
+private:
+      Node<T> *front;
+      int length=0;
+};
+template < class T >
+Linklist< T >::Linklist(T a[],int n){    //ͷ�巨
+      front =new Node<T>;
+      front->next=NULL;
+      for(int i=n-1;i>=0;i--){
+          Node<T> *s=new Node<T>;
+          s->date=a[i];
+          s->next=front->next;
+          front->next=s;
+      }
+      length=n;
+}
+template < class T >
+Linklist<T>::~Linklist(){
+      Node<T> *p=front;
+      while(p){
+        front=p;
+        p=p->next;
+        delete front;
+      }
+}
+template < class T >
+int Linklist< T >::Getlength(){
+      return length;
+}
+template < class T >
+void Linklist< T >::Printlist(){
+     Node<T> *p=front->next;
+     while(p){
+        cout<<p->date<<' ';
+        p=p->next;
+     }
+}
+template < class T >
+void Linklist< T >::Insert(int i,T x){
+     Node<T> *p=front->next;
+     if(i!=1)
+        p=Get(i-1);
+     if(p){
+        Node<T> *s=new Node<T>;
+        s->date;
+     }
+}
+template < class T >
+T Linklist< T >::Delete(int i){
+
+}
+template < class T >
+Node<T>* Linklist< T >::Get(int i){
+     Node<T> *p=front->next;
+     int j=1;
+     while(p&&j!=i){
+         p=p->next;
+         j++;
+     }
+     return p;
+}
+template < class T >
+int Linklist< T >::Locate(T x){
+
+}
+int main(){
+      int a[9]={1,2,3,4,5,43,4,342,532};
+      Linklist <int> k(a,9);
+      k.Printlist();
+}
