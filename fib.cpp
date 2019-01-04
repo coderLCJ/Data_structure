@@ -26,7 +26,7 @@ void fib(int A[2][2],int B[2][2],int k){
     printf("%d\n",B[0][0]);
 }
 int main()
-{
+{ 
     int n;
     while(~scanf("%d",&n)&&n!=-1){
         int A[2][2]={1,1,1,0};
